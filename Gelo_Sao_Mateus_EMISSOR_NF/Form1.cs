@@ -44,7 +44,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         private void Form1_Load(object sender, EventArgs e)
         {
             scriptName = "C:\\Users\\PC\\Documents\\Scripts\\emit_c#.bat";
-            ;
+            
             string jsonString = File.ReadAllText("clients.json");
             Data data = JsonSerializer.Deserialize<Data>(jsonString);
             foreach(Cliente cliente in data.Companies)
@@ -75,10 +75,17 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         {
             if (selectedSplit.Length != 0)
             {
-                ProcessStartInfo processInfo = new ProcessStartInfo();
-                processInfo.FileName = scriptName;
-                processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
-                _ = Process.Start(processInfo);
+                try
+                {
+                    ProcessStartInfo processInfo = new ProcessStartInfo();
+                    processInfo.FileName = scriptName;
+                    processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
+                    Process process = Process.Start(processInfo);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

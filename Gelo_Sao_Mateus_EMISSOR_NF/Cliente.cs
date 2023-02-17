@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         public string NUMERO { get; set; }
         public string BAIRRO { get; set; }
         public string VALOR { get; set; }
+        public object OBS { get; set; }
     }
 }
+    

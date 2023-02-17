@@ -88,5 +88,10 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                 }
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

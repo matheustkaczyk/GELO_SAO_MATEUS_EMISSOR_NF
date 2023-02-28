@@ -42,7 +42,14 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             textBoxValor3.Text = selectedSplit[6].Trim();
 
             ObservaçãoCNPJ test = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
-            obsTextBox.Text= test.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
+
+            if (test != null)
+            {
+                obsTextBox.Text= test.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
+            } else
+            {
+                obsTextBox.Text = "";
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

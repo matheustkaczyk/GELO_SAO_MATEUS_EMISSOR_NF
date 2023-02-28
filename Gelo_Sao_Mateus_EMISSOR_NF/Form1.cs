@@ -19,6 +19,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
     {
         private string scriptName;
         string[] selectedSplit = {};
+        List<ObservaçãoCNPJ> observationsByCNPJ = new List<ObservaçãoCNPJ> { };
 
         public Form1()
         {
@@ -39,6 +40,9 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             textBoxNumero.Text = selectedSplit[5].Trim();
             textBoxBairro.Text = selectedSplit[3].Trim();
             textBoxValor3.Text = selectedSplit[6].Trim();
+
+            ObservaçãoCNPJ test = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
+            obsTextBox.Text= test.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,6 +54,8 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             foreach(Cliente cliente in data.Companies)
             {
                 selectEmpresa.Items.Add($"{cliente.CNPJ} - {cliente.IE} - {cliente.NOME_FANTASIA} - {cliente.BAIRRO} - {cliente.LOGRADOURO} - {cliente.NUMERO} - {cliente.VALOR}");
+
+                observationsByCNPJ.Add(new ObservaçãoCNPJ(cliente.CNPJ, cliente.OBS));
             }
         }
 
@@ -87,11 +93,6 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

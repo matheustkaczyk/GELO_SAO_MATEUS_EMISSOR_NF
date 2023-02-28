@@ -22,5 +22,16 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         public string VALOR { get; set; }
         public object OBS { get; set; }
     }
+    public class ObservaçãoCNPJ
+    {
+        public string CNPJ;
+        public object OBS;
+
+        public ObservaçãoCNPJ(string CNPJ, object OBS)
+        {
+            this.CNPJ= CNPJ;
+            this.OBS= OBS;
+        }
+    }
 }
     

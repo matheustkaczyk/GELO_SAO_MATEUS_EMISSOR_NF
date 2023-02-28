@@ -58,6 +58,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.obsTextBox = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -153,9 +155,9 @@
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(622, 71);
+            this.label5.Location = new System.Drawing.Point(623, 71);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(2, 400);
+            this.label5.Size = new System.Drawing.Size(1, 506);
             this.label5.TabIndex = 10;
             // 
             // label6
@@ -296,9 +298,9 @@
             // label16
             // 
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label16.Location = new System.Drawing.Point(11, 349);
+            this.label16.Location = new System.Drawing.Point(626, 535);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(610, 2);
+            this.label16.Size = new System.Drawing.Size(567, 1);
             this.label16.TabIndex = 27;
             // 
             // button1
@@ -319,11 +321,13 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1210, 436);
+            this.tabControl1.Size = new System.Drawing.Size(1210, 606);
             this.tabControl1.TabIndex = 30;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.obsTextBox);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.button1);
@@ -357,18 +361,35 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1202, 410);
+            this.tabPage1.Size = new System.Drawing.Size(1202, 580);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Emissão";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(10, 354);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(90, 15);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "Observações";
+            // 
+            // obsTextBox
+            // 
+            this.obsTextBox.Location = new System.Drawing.Point(11, 372);
+            this.obsTextBox.Name = "obsTextBox";
+            this.obsTextBox.Size = new System.Drawing.Size(604, 191);
+            this.obsTextBox.TabIndex = 32;
+            this.obsTextBox.Text = "";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(237, 379);
+            this.button2.Location = new System.Drawing.Point(852, 539);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(37, 27);
+            this.button2.Size = new System.Drawing.Size(55, 24);
             this.button2.TabIndex = 31;
             this.button2.Text = "...";
             this.button2.UseVisualStyleBackColor = true;
@@ -378,7 +399,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 380);
+            this.label18.Location = new System.Drawing.Point(629, 541);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(217, 22);
             this.label18.TabIndex = 30;
@@ -390,7 +411,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1202, 410);
+            this.tabPage2.Size = new System.Drawing.Size(1202, 580);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Consulta";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -401,7 +422,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1196, 404);
+            this.webBrowser1.Size = new System.Drawing.Size(1196, 574);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("http://www.sintegra.fazenda.pr.gov.br/sintegra/", System.UriKind.Absolute);
             // 
@@ -413,11 +434,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 433);
+            this.ClientSize = new System.Drawing.Size(1206, 607);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gelo São Mateus - NF";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -466,6 +488,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RichTextBox obsTextBox;
     }
 }
 

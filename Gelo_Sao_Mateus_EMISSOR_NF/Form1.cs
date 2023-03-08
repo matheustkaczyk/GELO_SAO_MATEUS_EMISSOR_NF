@@ -46,8 +46,13 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             if (foundCNPJ != null)
             {
                 string parsedFoundOBS = foundCNPJ.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
+                double foundDays = double.Parse(parsedFoundOBS.Split(' ')[2].ToString());
 
-                obsTextBox.Text= parsedFoundOBS;
+                DateTime localDate = DateTime.Now;
+
+                obsTextBox.Text = $"" +
+                    $"{parsedFoundOBS}\n" +
+                    $"{localDate.AddDays((foundDays))}";
             } else
             {
                 obsTextBox.Text = "";

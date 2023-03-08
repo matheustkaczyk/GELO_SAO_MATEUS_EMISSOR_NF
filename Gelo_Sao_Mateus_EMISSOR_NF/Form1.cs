@@ -41,11 +41,13 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             textBoxBairro.Text = selectedSplit[3].Trim();
             textBoxValor3.Text = selectedSplit[6].Trim();
 
-            ObservaçãoCNPJ test = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
+            ObservaçãoCNPJ foundCNPJ = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
 
-            if (test != null)
+            if (foundCNPJ != null)
             {
-                obsTextBox.Text= test.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
+                string parsedFoundOBS = foundCNPJ.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
+
+                obsTextBox.Text= parsedFoundOBS;
             } else
             {
                 obsTextBox.Text = "";

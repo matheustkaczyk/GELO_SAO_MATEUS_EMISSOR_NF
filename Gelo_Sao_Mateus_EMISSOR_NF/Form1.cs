@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Diagnostics;
 using System.Xml.Linq;
+using System.Threading;
 
 namespace Gelo_Sao_Mateus_EMISSOR_NF
 {
@@ -97,16 +98,22 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             {
                 try
                 {
-                    ProcessStartInfo processInfo = new ProcessStartInfo();
-                    processInfo.FileName = scriptName;
-                    processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
-                    Process process = Process.Start(processInfo);
+                    Thread newThread = new Thread(() => startProcess());
+                    newThread.Start();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void startProcess()
+        {
+            ProcessStartInfo processInfo = new ProcessStartInfo();
+            processInfo.FileName = scriptName;
+            processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
+            Process process = Process.Start(processInfo);
         }
     }
 }

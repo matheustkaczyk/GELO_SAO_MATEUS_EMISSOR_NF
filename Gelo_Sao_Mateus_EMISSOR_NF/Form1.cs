@@ -44,7 +44,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
 
             ObservaçãoCNPJ foundCNPJ = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
 
-            if (foundCNPJ != null)
+            if (foundCNPJ != null && foundCNPJ.OBS.ToString() != "[]")
             {
                 string parsedFoundOBS = foundCNPJ.OBS.ToString().Replace("\"", "").Replace("[", "").Replace("]", "").Trim();
                 double foundDays = double.Parse(parsedFoundOBS.Split(' ')[2].ToString());

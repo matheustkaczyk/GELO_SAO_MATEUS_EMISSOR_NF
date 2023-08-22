@@ -136,22 +136,22 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         {
             if (isEditable)
             {
-                textBoxNomeFantasia.Enabled = true;
-                textBoxInscricaoEstadual.Enabled = true;
-                textBoxCnpj.Enabled = true;
-                textBoxLogradouro.Enabled = true;
-                textBoxNumero.Enabled = true;
-                textBoxBairro.Enabled = true;
-                textBoxValor3.Enabled = true;
+                textBoxNomeFantasia.ReadOnly = false;
+                textBoxInscricaoEstadual.ReadOnly = false;
+                textBoxCnpj.ReadOnly = false;
+                textBoxLogradouro.ReadOnly = false;
+                textBoxNumero.ReadOnly = false;
+                textBoxBairro.ReadOnly = false;
+                textBoxValor3.ReadOnly = false;
             } else
             {
-                textBoxNomeFantasia.Enabled = false;
-                textBoxInscricaoEstadual.Enabled = false;
-                textBoxCnpj.Enabled = false;
-                textBoxLogradouro.Enabled = false;
-                textBoxNumero.Enabled = false;
-                textBoxBairro.Enabled = false;
-                textBoxValor3.Enabled = false;
+                textBoxNomeFantasia.ReadOnly = true;
+                textBoxInscricaoEstadual.ReadOnly = true;
+                textBoxCnpj.ReadOnly = true;
+                textBoxLogradouro.ReadOnly = true;
+                textBoxNumero.ReadOnly = true;
+                textBoxBairro.ReadOnly = true;
+                textBoxValor3.ReadOnly = true;
             }
 
         }

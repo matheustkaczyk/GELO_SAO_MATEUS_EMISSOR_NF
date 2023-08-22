@@ -21,6 +21,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         private string scriptName;
         string[] selectedSplit = {};
         List<ObservaçãoCNPJ> observationsByCNPJ = new List<ObservaçãoCNPJ> { };
+        bool isEditable = false;
 
         public Form1()
         {
@@ -72,6 +73,8 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
 
                 observationsByCNPJ.Add(new ObservaçãoCNPJ(cliente.CNPJ, cliente.OBS));
             }
+
+            editInputs();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -114,6 +117,43 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             processInfo.FileName = scriptName;
             processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
             Process process = Process.Start(processInfo);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                isEditable = true;
+            } else
+            {
+                isEditable = false;
+            }
+
+            editInputs();
+        }
+
+        private void editInputs()
+        {
+            if (isEditable)
+            {
+                textBoxNomeFantasia.Enabled = true;
+                textBoxInscricaoEstadual.Enabled = true;
+                textBoxCnpj.Enabled = true;
+                textBoxLogradouro.Enabled = true;
+                textBoxNumero.Enabled = true;
+                textBoxBairro.Enabled = true;
+                textBoxValor3.Enabled = true;
+            } else
+            {
+                textBoxNomeFantasia.Enabled = false;
+                textBoxInscricaoEstadual.Enabled = false;
+                textBoxCnpj.Enabled = false;
+                textBoxLogradouro.Enabled = false;
+                textBoxNumero.Enabled = false;
+                textBoxBairro.Enabled = false;
+                textBoxValor3.Enabled = false;
+            }
+
         }
     }
 }

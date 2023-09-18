@@ -58,14 +58,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.obsTextBox = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -327,11 +330,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.checkBox2);
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.obsTextBox);
             this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.selectEmpresa);
             this.tabPage1.Controls.Add(this.label1);
@@ -368,11 +374,34 @@
             this.tabPage1.Text = "Emissão";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(82, 546);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(80, 22);
+            this.checkBox2.TabIndex = 36;
+            this.checkBox2.Text = "Imprimir";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // button3
+            // 
+            this.button3.Enabled = false;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(490, 541);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 31);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "Salvar";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(516, 93);
+            this.checkBox1.Location = new System.Drawing.Point(11, 546);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(65, 22);
             this.checkBox1.TabIndex = 34;
@@ -396,30 +425,20 @@
             this.obsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.obsTextBox.Location = new System.Drawing.Point(11, 372);
             this.obsTextBox.Name = "obsTextBox";
-            this.obsTextBox.Size = new System.Drawing.Size(604, 191);
+            this.obsTextBox.Size = new System.Drawing.Size(605, 164);
             this.obsTextBox.TabIndex = 32;
             this.obsTextBox.Text = "";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(852, 539);
+            this.button2.Location = new System.Drawing.Point(630, 544);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 24);
+            this.button2.Size = new System.Drawing.Size(158, 24);
             this.button2.TabIndex = 31;
-            this.button2.Text = "...";
+            this.button2.Text = "Procurar script";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(629, 541);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(217, 22);
-            this.label18.TabIndex = 30;
-            this.label18.Text = "Caminho para o script";
             // 
             // tabPage2
             // 
@@ -445,6 +464,28 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Green;
+            this.label18.Location = new System.Drawing.Point(794, 551);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(91, 13);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "Script encontrado";
+            this.label18.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label19.Location = new System.Drawing.Point(794, 551);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(112, 13);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Script não encontrado";
+            this.label19.Visible = false;
             // 
             // Form1
             // 
@@ -503,11 +544,14 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.RichTextBox obsTextBox;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }
 

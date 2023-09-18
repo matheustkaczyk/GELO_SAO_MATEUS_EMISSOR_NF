@@ -22,6 +22,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         string[] selectedSplit = {};
         List<ObservaçãoCNPJ> observationsByCNPJ = new List<ObservaçãoCNPJ> { };
         bool isEditable = false;
+        bool shouldPrint = false;
 
         public Form1()
         {
@@ -75,6 +76,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             }
 
             editInputs();
+            scriptExists();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,6 +95,8 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                     scriptName = "C:\\Users\\PC\\Documents\\Scripts\\emit_c#.bat";
                 }
             }
+
+            scriptExists();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -115,8 +119,8 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         {
             ProcessStartInfo processInfo = new ProcessStartInfo();
             processInfo.FileName = scriptName;
-            processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}\"";
-            Process process = Process.Start(processInfo);
+            processInfo.Arguments = $"\"{textBoxCnpj.Text}-{textBoxNomeFantasia.Text}-{textBoxInscricaoEstadual.Text}-{textBoxLogradouro.Text}-{textBoxNumero.Text}-{textBoxBairro.Text}-{textBoxQuantidade3.Text}-{textBoxValor3.Text}-{textBoxQuantidade5.Text}-{textBoxValor5.Text}-{checkBox2.Checked}\"";
+            Process.Start(processInfo);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -143,6 +147,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                 textBoxNumero.ReadOnly = false;
                 textBoxBairro.ReadOnly = false;
                 textBoxValor3.ReadOnly = false;
+                button3.Enabled= true;
             } else
             {
                 textBoxNomeFantasia.ReadOnly = true;
@@ -154,6 +159,31 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                 textBoxValor3.ReadOnly = true;
             }
 
+        }
+
+        private void scriptExists()
+        {
+            if (File.Exists(scriptName))
+            {
+                label18.Visible = true;
+                label19.Visible = false;
+            } else
+            {
+                label18.Visible = false;
+                label19.Visible = true;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                shouldPrint = true;
+            }
+            else
+            {
+                isEditable = false;
+            }
         }
     }
 }

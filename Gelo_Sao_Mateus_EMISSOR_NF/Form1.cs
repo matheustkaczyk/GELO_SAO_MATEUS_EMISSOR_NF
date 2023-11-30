@@ -13,6 +13,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Diagnostics;
 using System.Xml.Linq;
 using System.Threading;
+using System.Text.Json;
 
 namespace Gelo_Sao_Mateus_EMISSOR_NF
 {
@@ -23,6 +24,7 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         List<ObservaçãoCNPJ> observationsByCNPJ = new List<ObservaçãoCNPJ> { };
         bool isEditable = false;
         bool shouldPrint = false;
+        List<Cliente> clients;
 
         public Form1()
         {
@@ -36,12 +38,12 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
 
             selectedSplit = selectedValue.Split('-');
 
-            textBoxNomeFantasia.Text = selectedSplit[2].Trim();
-            textBoxInscricaoEstadual.Text = selectedSplit[1].Trim();
             textBoxCnpj.Text = selectedSplit[0].Trim();
+            textBoxInscricaoEstadual.Text = selectedSplit[1].Trim();
+            textBoxNomeFantasia.Text = selectedSplit[2].Trim();
+            textBoxBairro.Text = selectedSplit[3].Trim();
             textBoxLogradouro.Text = selectedSplit[4].Trim();
             textBoxNumero.Text = selectedSplit[5].Trim();
-            textBoxBairro.Text = selectedSplit[3].Trim();
             textBoxValor3.Text = selectedSplit[6].Trim();
 
             ObservaçãoCNPJ foundCNPJ = observationsByCNPJ.Find(x => x.CNPJ == selectedSplit[0].Trim());
@@ -65,16 +67,9 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
         private void Form1_Load(object sender, EventArgs e)
         {
             scriptName = "C:\\Users\\PC\\Documents\\Scripts\\emit_c#.bat";
-            
-            string jsonString = File.ReadAllText("clients.json");
-            Data data = JsonSerializer.Deserialize<Data>(jsonString);
-            foreach(Cliente cliente in data.Companies)
-            {
-                selectEmpresa.Items.Add($"{cliente.CNPJ} - {cliente.IE} - {cliente.NOME_FANTASIA} - {cliente.BAIRRO} - {cliente.LOGRADOURO} - {cliente.NUMERO} - {cliente.VALOR}");
 
-                observationsByCNPJ.Add(new ObservaçãoCNPJ(cliente.CNPJ, cliente.OBS));
-            }
-
+            deSerializeJson();
+            renderClients(this.clients);
             editInputs();
             scriptExists();
         }
@@ -159,6 +154,28 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
                 textBoxValor3.ReadOnly = true;
             }
 
+
+        }
+
+        private void saveClient()
+        {
+            string currentClientCNPJ = selectedSplit[0].Trim();
+
+            int clientIndex = this.clients.FindIndex(c => c.CNPJ == currentClientCNPJ);
+
+            Cliente updatedClient = new Cliente();
+
+            updatedClient.CNPJ = textBoxCnpj.Text;
+            updatedClient.IE = textBoxInscricaoEstadual.Text;
+            updatedClient.NOME_FANTASIA = textBoxNomeFantasia.Text;
+            updatedClient.BAIRRO = textBoxBairro.Text;
+            updatedClient.LOGRADOURO = textBoxLogradouro.Text;
+            updatedClient.NUMERO = textBoxNumero.Text;
+            updatedClient.VALOR = textBoxValor3.Text;
+
+            clients[clientIndex] = updatedClient;
+
+            renderClients(this.clients);
         }
 
         private void scriptExists()
@@ -174,6 +191,33 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             }
         }
 
+        private void deSerializeJson()
+        {
+            string jsonString = File.ReadAllText("clients.json");
+            Data data = JsonSerializer.Deserialize<Data>(jsonString);
+
+            clients = data.Companies;
+        }
+
+        private void serializeJson(List<Cliente> clientsData)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+
+            string jsonString = JsonSerializer.Serialize(clientsData, options);
+
+            Console.WriteLine(jsonString);
+        }
+
+        private void renderClients(List<Cliente> clients)
+        {
+            foreach (Cliente cliente in clients)
+            {
+                selectEmpresa.Items.Add($"{cliente.CNPJ} - {cliente.IE} - {cliente.NOME_FANTASIA} - {cliente.BAIRRO} - {cliente.LOGRADOURO} - {cliente.NUMERO} - {cliente.VALOR}");
+
+                observationsByCNPJ.Add(new ObservaçãoCNPJ(cliente.CNPJ, cliente.OBS));
+            }
+        }
+
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked)
@@ -184,6 +228,11 @@ namespace Gelo_Sao_Mateus_EMISSOR_NF
             {
                 isEditable = false;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            saveClient();
         }
     }
 }
